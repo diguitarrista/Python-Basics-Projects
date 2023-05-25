@@ -357,6 +357,7 @@ class Operation:
         print("Balance: $" + str(balance))
         print("-------------------------")
         print()
+        print("--------------------------------------------------------------------")
         
 def running(accounts):
     # Creates the object for the operations.
@@ -454,7 +455,7 @@ def running(accounts):
                 bank_account.show_informations(bank_account.name, bank_account.agency, bank_account.number, bank_account.password, bank_account.balance)
                 operation.statement(bank_account.balance, bank_account.transactions)
                 total_bank_balance += bank_account.balance
-            print()
+            
             print("--------------------------------------------------------------------")
             print("The total money in the bank is", total_bank_balance)
             print("--------------------------------------------------------------------")
