@@ -1,4 +1,4 @@
-# Python-Basics-Projects
+# Python Basics Projects
 
 During my studies in Introduction to Computer Science 
 I had three challenges to build a program using the 
