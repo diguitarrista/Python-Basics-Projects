@@ -129,7 +129,6 @@ def check_inputs():
             print("Invalid input. Try again for the beginning.")
             print()
     return [n_col, n_row, xo, yo]
-
                     
 def check_direction(body):
     # Check the user's input for the direction. 
