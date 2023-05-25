@@ -110,7 +110,6 @@ class Operation:
         return account
 
     def access_account(self, accounts):
-        # Check the number, agency and password to access the account.
         check_account = True
         while check_account:
             try:
@@ -120,6 +119,8 @@ class Operation:
                 check_account = False
             except ValueError:
                 print("> The number and the agency must be integers <")
+                
+        # Check the number, agency and password to access the account.
         if number in accounts["number"]:
             for n in accounts["number"]:
                 if number == n:
@@ -178,6 +179,7 @@ class Operation:
                         check_value = False
                 except ValueError:
                     print("> You must type a number. <")
+                    
             if withdraw_value <= acc.balance:
                 check_balance = False
                 # Check the account's password.
@@ -195,12 +197,10 @@ class Operation:
                             formatted_date = current_date.strftime('%Y-%m-%d %H:%M:%S')
                             print()
                             print("You withdraw", str(withdraw_value), "at", formatted_date)
-
                             return [withdraw_value, formatted_date]
                     elif attempts == 0:
                         print("> You have exceeded the number of attempts ! <")
-                        return [0, 0]
-                
+                        return [0, 0]     
             else:
                 print()
                 print("> You don't have enough money! <")
@@ -212,6 +212,7 @@ class Operation:
         bank_accs = bank_accounts
         acc = account
         print("Inform the following information:")
+        
         # Check the account info that the user is trying to transfer.
         check_info = True
         while check_info:
@@ -265,7 +266,8 @@ class Operation:
                 formatted_date = current_date.strftime('%Y-%m-%d %H:%M:%S')
                 print("You transfer", str(transfer_value), "to the account number", str(number), "at", formatted_date)
                 
-                # Return how much was transfered, the account's name and the record of the transaction, how much money was withdrawn and where it went. 
+                # Return how much was transfered, the account's name and the record of the transaction, 
+                # how much money was withdrawn and where it went. 
                 return [transfer_value, number, formatted_date]
             else:
                 print()
@@ -280,6 +282,7 @@ class Operation:
         # Get the dictionary.
         operations = transactions
         acc_balance = balance
+        
         print("#######################################")
         print("#                                     #")
         print("# Here's the transactions operations: #")
@@ -300,14 +303,11 @@ class Operation:
     
         # Sort the dictionary keys using the custom key function
         sorted_keys = sorted(operations.keys(), key=get_last_date_value)
-    
         # Create a new dictionary to store the sorted values
         sorted_dict = {}
-    
         # Populate the sorted dictionary with the sorted values
         for key in sorted_keys:
             sorted_dict[key] = operations[key]
-    
         # Print the sorted dictionary
         for key, value in sorted_dict.items():
             if key == "Transfered":
@@ -354,7 +354,6 @@ class Operation:
                     print("No Received Operations")
                 print("--------------------------------------------------------------------")
                 print()
-
         print("-------------------------")
         print("Balance: $" + str(balance))
         print("-------------------------")
@@ -403,7 +402,7 @@ def running(accounts):
             in_account = True
             if account_number == 0:
                 in_account = False
-            
+            # Operations loop
             while in_account:
                 # Get the account from the account number
                 for bank_account in bank_accounts:
@@ -425,7 +424,6 @@ def running(accounts):
                             acc.balance -= float(transfer_value)
                             target_acc.transactions["Received"].append([transfer_value, acc.number, transfer_date])
                             acc.transactions["Transfered"].append([transfer_value, transfer_number, transfer_date])
-                    
                 # Deposit
                 elif user_input == "D":
                     deposit = operation.deposit()
@@ -456,7 +454,6 @@ def running(accounts):
             print("The total money in the bank is", total_bank_balance)
             print("--------------------------------------------------------------------")
             print()
-
         # Exit
         elif user_access == "E":
             print("You've exited")
