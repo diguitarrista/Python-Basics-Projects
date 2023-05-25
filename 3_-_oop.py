@@ -235,7 +235,7 @@ class Operation:
                             print("> You can't transfer negative values <")
                             print()
                         # Check the balance from the user's account.
-                        elif transfer_value > float(bank_accs["balance"][name_index]):
+                        elif transfer_value > acc.balance:
                             print("> You don't have enough balance <")
                             print()
                         else:
@@ -243,7 +243,6 @@ class Operation:
                     except ValueError:
                         print("> You must type a number. <")
                         print()
-                balance = acc.balance
 
                 # Check the password from the user's account.
                 check_password = True
