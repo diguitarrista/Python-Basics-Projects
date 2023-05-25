@@ -37,18 +37,18 @@ class Account:
 
     def show_statement(self, agency, number, balance):
         print()
-        print("--------------------------------------------------------------")
+        print("--------------------------------------------------------------------")
         print("Account number:" , self.number, "Account agency:", self.agency)
         print("Balance: $", self.balance)
-        print("--------------------------------------------------------------")
+        print("--------------------------------------------------------------------")
 
     def show_informations(self, name, agency, number, password, balance):
         print()
-        print("--------------------------------------------------------------")
+        print("--------------------------------------------------------------------")
         print("Name:", self.name, "Password:", self.password)
         print("Account number:" , self.number, "Account agency:", self.agency)
         print("Balance: $", self.balance)
-        print("--------------------------------------------------------------")
+        print("--------------------------------------------------------------------")
         print()
 
 # Creates the class Operation. This class will have all the bank operations.       
@@ -304,10 +304,10 @@ class Operation:
         sorted_keys = sorted(operations.keys(), key=get_last_date_value)
         # Create a new dictionary to store the sorted values
         sorted_dict = {}
-        # Populate the sorted dictionary with the sorted values
         for key in sorted_keys:
             sorted_dict[key] = operations[key]
-        # Print the sorted dictionary
+
+        # Print the statment
         for key, value in sorted_dict.items():
             if key == "Transfered":
                 trans = operations["Transfered"]
@@ -376,6 +376,7 @@ def running(accounts):
     print("#                     #")
     print("#######################")
     print()
+    
     # Check the user input.            
     quit_menu = False
     while not quit_menu:
@@ -384,6 +385,8 @@ def running(accounts):
         print()
         # Guarantees that the input is capitalize.     
         user_access = user_access.capitalize()
+        
+        # Create an account
         if user_access == "C":
             acc = operation.create_account()
             sample["name"].append(acc.name)
@@ -393,14 +396,16 @@ def running(accounts):
             sample["balance"].append(acc.balance)
             sample["transactions"].append(acc.transactions)
             bank_accounts.append(acc)
+            
+        # Access an account
         elif user_access == "A":
             # Get the account number
             account_number = operation.access_account(sample)
-            # Retrieve the value if the account number is not zero
-            # the account is in the data base.
+            # Retrieve the value if the account number is not zero the account is in the data base.
             in_account = True
             if account_number == 0:
                 in_account = False
+                
             # Operations loop
             while in_account:
                 # Get the account from the account number
@@ -441,6 +446,7 @@ def running(accounts):
                 # Quit
                 elif user_input == "Q":
                     in_account = False
+                    
         # Manager Mode
         elif user_access == "M":
             total_bank_balance = 0
