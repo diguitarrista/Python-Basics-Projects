@@ -119,6 +119,7 @@ class Operation:
                 check_account = False
             except ValueError:
                 print("> The number and the agency must be integers <")
+                print()
                 
         # Check the number, agency and password to access the account.
         if number in accounts["number"]:
@@ -148,12 +149,15 @@ class Operation:
                 deposit_value = float(input("How much money do you want to deposit in the PyBank: "))
                 print()
                 if deposit_value < 0:
+                    print()
                     print("> You can't deposit negative values <")
                     print()
                 else:
                     check_money = False
             except ValueError:
+                print()
                 print("> You must type a number in the format 10.0. <")
+                print()
 
         current_date = datetime.datetime.now()
         formatted_date = current_date.strftime('%Y-%m-%d %H:%M:%S')
@@ -173,12 +177,15 @@ class Operation:
                 try:
                     withdraw_value = float(input("How much do you want to withdraw: "))
                     if withdraw_value < 0:
+                        print()
                         print("> You can't withdraw negative values <")
                         print()
                     else:
                         check_value = False
                 except ValueError:
+                    print()
                     print("> You must type a number. <")
+                    print()
                     
             if withdraw_value <= acc.balance:
                 check_balance = False
@@ -190,7 +197,9 @@ class Operation:
                         password = input("Please type your password to confirm the transaction: ")
                         if password != acc.password:
                             attempts -= 1
+                            print()
                             print("> Wrong password ! Number the attempts left:", attempts, "<")
+                            print()
                         else:
                             check_password = False
                             current_date = datetime.datetime.now()
@@ -199,11 +208,14 @@ class Operation:
                             print("You withdraw", str(withdraw_value), "at", formatted_date)
                             return [withdraw_value, formatted_date]
                     elif attempts == 0:
+                        print()
                         print("> You have exceeded the number of attempts ! <")
+                        print()
                         return [0, 0]     
             else:
                 print()
                 print("> You don't have enough money! <")
+                print()
                 value = 0
                 check_balance = False
                 return [0, 0]
@@ -222,7 +234,9 @@ class Operation:
                 agency = int(input("The account agency: "))
                 check_info = False
             except ValueError:
+                print()
                 print("> The number and the agency must be integers. <")
+                print()
         
         if name in bank_accs["name"]:
             name_index = bank_accs["name"].index(name)
@@ -232,15 +246,18 @@ class Operation:
                     try:
                         transfer_value = float(input("How much do you want to transfer: "))
                         if transfer_value < 0:
+                            print()
                             print("> You can't transfer negative values <")
                             print()
                         # Check the balance from the user's account.
                         elif transfer_value > acc.balance:
+                            print()
                             print("> You don't have enough balance <")
                             print()
                         else:
                             check_transfer = False
                     except ValueError:
+                        print()
                         print("> You must type a number. <")
                         print()
 
@@ -252,11 +269,15 @@ class Operation:
                     if attempts > 0:
                         if password != acc.password:
                             attempts -= 1
+                            print()
                             print("> Wrong password ! Number the attempts left:", attempts, "<")
+                            print()
                         else:
                             check_password = False
                     elif attempts == 0:
+                        print()
                         print("> You have exceeded the number of attempts ! <")
+                        print()
                         return [0, 0, 0]
                     else:
                         check_password = False
@@ -455,7 +476,7 @@ def running(accounts):
                 bank_account.show_informations(bank_account.name, bank_account.agency, bank_account.number, bank_account.password, bank_account.balance)
                 operation.statement(bank_account.balance, bank_account.transactions)
                 total_bank_balance += bank_account.balance
-            
+
             print("--------------------------------------------------------------------")
             print("The total money in the bank is", total_bank_balance)
             print("--------------------------------------------------------------------")
